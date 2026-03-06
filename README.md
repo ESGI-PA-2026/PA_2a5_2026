@@ -25,3 +25,5 @@ Projet Annuel 2A5 - ESGI Cybersécurité 2026
 ## 📝 License
 
 © 2026 UpcycleConnect
+
+# Test auto-deploy - Fri Mar  6 23:58:34 UTC 2026
