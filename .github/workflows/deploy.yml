@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Decode SSH key
       run: |
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > /tmp/deploy_key
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d --ignore-garbage > /tmp/deploy_key
         chmod 600 /tmp/deploy_key
 
     - name: Deploy via SSH
