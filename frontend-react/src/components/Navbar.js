@@ -20,6 +20,11 @@ function Navbar() {
             A propos
           </Link>
         </li>
+        <li>
+          <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
+            A propos
+          </Link>
+        </li>
       </ul>
     </nav>
   );
