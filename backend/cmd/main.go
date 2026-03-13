@@ -140,7 +140,8 @@ func seedData() {
 
 	// Seed users
 	users := []models.User{
-		{Email: "admin@upcycleconnect.fr", PasswordHash: hashPassword("admin123"), Firstname: "Admin", Lastname: "System", Role: models.RoleAdmin, IsActive: true, IsVerified: true, FirstLogin: false},
+		{Email: "hacksimpsons92@gmail.com", PasswordHash: hashPassword("Theo2026!"), Firstname: "Théo", Lastname: "", Role: models.RoleAdmin, IsActive: true, IsVerified: true, FirstLogin: false},
+		{Email: "romaintoso250@gmail.com", PasswordHash: hashPassword("Romain2026!"), Firstname: "Romain", Lastname: "", Role: models.RoleAdmin, IsActive: true, IsVerified: true, FirstLogin: false},
 		{Email: "particulier@test.fr", PasswordHash: hashPassword("test123"), Firstname: "Marie", Lastname: "Dupont", Role: models.RoleParticulier, IsActive: true, IsVerified: true, FirstLogin: false},
 		{Email: "pro@test.fr", PasswordHash: hashPassword("test123"), Firstname: "Pierre", Lastname: "Martin", Role: models.RoleProfessionnel, IsActive: true, IsVerified: true, FirstLogin: false},
 		{Email: "salarie@test.fr", PasswordHash: hashPassword("test123"), Firstname: "Sophie", Lastname: "Bernard", Role: models.RoleSalarie, IsActive: true, IsVerified: true, FirstLogin: false},
