@@ -91,16 +91,13 @@ export default function ListingDetailPage() {
             {/* Sidebar prix + vendeur */}
             <div className="space-y-4">
               <div className="card">
-                <div className="text-center mb-4">
+                <div className="text-center">
                   {listing.type === 'vente' && listing.price ? (
                     <span className="text-3xl font-bold text-primary-500">{listing.price}€</span>
                   ) : (
                     <span className="text-3xl font-bold text-green-600">Gratuit</span>
                   )}
                 </div>
-                <Link to="/register" className="btn-primary w-full text-center block">
-                  Contacter le vendeur
-                </Link>
               </div>
 
               {listing.user && (
