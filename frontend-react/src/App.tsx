@@ -14,7 +14,6 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminListings from './pages/admin/AdminListings';
 import AdminWorkshops from './pages/admin/AdminWorkshops';
-import AdminContainers from './pages/admin/AdminContainers';
 import AdminFinance from './pages/admin/AdminFinance';
 import AdminCategories from './pages/admin/AdminCategories';
 
@@ -22,7 +21,6 @@ import AdminCategories from './pages/admin/AdminCategories';
 import DashboardParticulier from './pages/particulier/DashboardParticulier';
 import CreateListingPage from './pages/particulier/CreateListingPage';
 import ScorePage from './pages/particulier/ScorePage';
-import ContainerRequestPage from './pages/particulier/ContainerRequestPage';
 
 // Professionnel pages
 import DashboardPro from './pages/professionnel/DashboardPro';
@@ -64,7 +62,6 @@ function App() {
       <Route path="/admin/utilisateurs" element={<ProtectedRoute roles={['admin']}><AdminUsers /></ProtectedRoute>} />
       <Route path="/admin/annonces" element={<ProtectedRoute roles={['admin']}><AdminListings /></ProtectedRoute>} />
       <Route path="/admin/formations" element={<ProtectedRoute roles={['admin']}><AdminWorkshops /></ProtectedRoute>} />
-      <Route path="/admin/conteneurs" element={<ProtectedRoute roles={['admin']}><AdminContainers /></ProtectedRoute>} />
       <Route path="/admin/finance" element={<ProtectedRoute roles={['admin']}><AdminFinance /></ProtectedRoute>} />
       <Route path="/admin/categories" element={<ProtectedRoute roles={['admin']}><AdminCategories /></ProtectedRoute>} />
 
@@ -72,7 +69,6 @@ function App() {
       <Route path="/dashboard" element={<ProtectedRoute roles={['particulier']}><DashboardParticulier /></ProtectedRoute>} />
       <Route path="/annonces/creer" element={<ProtectedRoute roles={['particulier', 'professionnel']}><CreateListingPage /></ProtectedRoute>} />
       <Route path="/score" element={<ProtectedRoute roles={['particulier', 'professionnel', 'salarie']}><ScorePage /></ProtectedRoute>} />
-      <Route path="/conteneurs/demande" element={<ProtectedRoute roles={['particulier']}><ContainerRequestPage /></ProtectedRoute>} />
 
       {/* Professionnel routes */}
       <Route path="/pro" element={<ProtectedRoute roles={['professionnel']}><DashboardPro /></ProtectedRoute>} />

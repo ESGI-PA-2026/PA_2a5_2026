@@ -24,8 +24,6 @@ func main() {
 		&models.Listing{},
 		&models.Workshop{},
 		&models.WorkshopBooking{},
-		&models.Container{},
-		&models.ContainerRequest{},
 		&models.UpcyclingScore{},
 		&models.ScoreEntry{},
 		&models.Subscription{},
@@ -82,15 +80,6 @@ func main() {
 	api.PUT("/workshops/:id", middleware.AuthRequired(), middleware.RequireRole(models.RoleSalarie, models.RoleAdmin), handlers.UpdateWorkshop)
 	api.PUT("/workshops/:id/validate", middleware.AuthRequired(), middleware.RequireRole(models.RoleAdmin), handlers.ValidateWorkshop)
 	api.POST("/workshops/:id/book", middleware.AuthRequired(), handlers.BookWorkshop)
-
-	// Containers
-	api.GET("/containers", middleware.AuthRequired(), handlers.GetContainers)
-	api.POST("/containers", middleware.AuthRequired(), middleware.RequireRole(models.RoleAdmin), handlers.CreateContainer)
-	api.PUT("/containers/:id", middleware.AuthRequired(), middleware.RequireRole(models.RoleAdmin), handlers.UpdateContainer)
-	api.GET("/containers/requests", middleware.AuthRequired(), middleware.RequireRole(models.RoleAdmin), handlers.GetContainerRequests)
-	api.POST("/containers/requests", middleware.AuthRequired(), handlers.CreateContainerRequestHandler)
-	api.PUT("/containers/requests/:id/validate", middleware.AuthRequired(), middleware.RequireRole(models.RoleAdmin), handlers.ValidateContainerRequest)
-	api.PUT("/containers/requests/:id/reject", middleware.AuthRequired(), middleware.RequireRole(models.RoleAdmin), handlers.RejectContainerRequest)
 
 	// Score & notifications
 	api.GET("/score/me", middleware.AuthRequired(), handlers.GetMyScore)
@@ -169,19 +158,6 @@ func seedData() {
 
 	for i := range categories {
 		config.DB.Create(&categories[i])
-	}
-
-	// Containers
-	containers := []models.Container{
-		{Name: "Conteneur République", Address: "Place de la République", District: "75011", Capacity: 30, CurrentCount: 12, Status: "operational"},
-		{Name: "Conteneur Bastille", Address: "Place de la Bastille", District: "75012", Capacity: 25, CurrentCount: 20, Status: "operational"},
-		{Name: "Conteneur Nation", Address: "Place de la Nation", District: "75011", Capacity: 20, CurrentCount: 5, Status: "operational"},
-		{Name: "Conteneur Oberkampf", Address: "Rue Oberkampf", District: "75011", Capacity: 15, CurrentCount: 15, Status: "full"},
-		{Name: "Conteneur Marais", Address: "Rue de Bretagne", District: "75003", Capacity: 25, CurrentCount: 8, Status: "operational"},
-	}
-
-	for i := range containers {
-		config.DB.Create(&containers[i])
 	}
 
 	// Listings

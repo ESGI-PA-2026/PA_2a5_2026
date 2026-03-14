@@ -74,33 +74,6 @@ export interface WorkshopBooking {
   created_at: string;
 }
 
-export interface Container {
-  id: number;
-  name: string;
-  address: string;
-  district: string;
-  capacity: number;
-  current_count: number;
-  status: 'operational' | 'full' | 'maintenance';
-  created_at: string;
-}
-
-export interface ContainerRequest {
-  id: number;
-  user_id: number;
-  user?: User;
-  container_id: number;
-  container?: Container;
-  object_title: string;
-  object_description: string;
-  desired_date: string;
-  status: 'pending' | 'approved' | 'rejected';
-  access_code?: string;
-  barcode?: string;
-  reject_reason?: string;
-  created_at: string;
-}
-
 export interface UpcyclingScore {
   id: number;
   user_id: number;
@@ -149,8 +122,6 @@ export interface AdminStats {
   pending_listings: number;
   total_workshops: number;
   pending_workshops: number;
-  total_containers: number;
-  pending_container_requests: number;
   monthly_revenue: Array<{ month: string; revenue: number }>;
   monthly_revenue_total: number;
 }

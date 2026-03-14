@@ -40,7 +40,7 @@ export default function AdminDashboard() {
           </div>
 
           {/* Alerts */}
-          {((stats?.pending_listings || 0) > 0 || (stats?.pending_workshops || 0) > 0 || (stats?.pending_container_requests || 0) > 0) && (
+          {((stats?.pending_listings || 0) > 0 || (stats?.pending_workshops || 0) > 0) && (
             <div className="card border-l-4 border-amber-400">
               <div className="flex items-center gap-2 mb-3">
                 <AlertCircle className="w-5 h-5 text-amber-500" />
@@ -62,15 +62,6 @@ export default function AdminDashboard() {
                     <div>
                       <p className="text-sm font-medium text-gray-800">{stats?.pending_workshops} formation{(stats?.pending_workshops || 0) > 1 ? 's' : ''} en attente</p>
                       <p className="text-xs text-gray-500">Validation requise</p>
-                    </div>
-                  </Link>
-                )}
-                {(stats?.pending_container_requests || 0) > 0 && (
-                  <Link to="/admin/conteneurs" className="flex items-center gap-3 p-3 bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors">
-                    <Package className="w-5 h-5 text-amber-500" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-800">{stats?.pending_container_requests} demande{(stats?.pending_container_requests || 0) > 1 ? 's' : ''} de dépôt</p>
-                      <p className="text-xs text-gray-500">En attente de traitement</p>
                     </div>
                   </Link>
                 )}

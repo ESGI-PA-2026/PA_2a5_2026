@@ -97,39 +97,6 @@ CREATE TABLE IF NOT EXISTS workshop_bookings (
     KEY idx_workshop_bookings_deleted_at (deleted_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Containers
-CREATE TABLE IF NOT EXISTS containers (
-    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    created_at DATETIME(3),
-    updated_at DATETIME(3),
-    deleted_at DATETIME(3),
-    name VARCHAR(191) NOT NULL,
-    address VARCHAR(191),
-    district VARCHAR(191),
-    capacity INT DEFAULT 25,
-    current_count INT DEFAULT 0,
-    status VARCHAR(20) DEFAULT 'operational',
-    KEY idx_containers_deleted_at (deleted_at)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Container requests
-CREATE TABLE IF NOT EXISTS container_requests (
-    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    created_at DATETIME(3),
-    updated_at DATETIME(3),
-    deleted_at DATETIME(3),
-    user_id BIGINT UNSIGNED,
-    container_id BIGINT UNSIGNED,
-    object_title VARCHAR(191),
-    object_description TEXT,
-    desired_date DATETIME(3),
-    status VARCHAR(20) DEFAULT 'pending',
-    access_code VARCHAR(191),
-    barcode VARCHAR(191),
-    reject_reason VARCHAR(191),
-    KEY idx_container_requests_deleted_at (deleted_at)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- Upcycling scores
 CREATE TABLE IF NOT EXISTS upcycling_scores (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

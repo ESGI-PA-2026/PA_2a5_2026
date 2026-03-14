@@ -17,15 +17,5 @@ INSERT INTO categories (created_at, updated_at, name, slug, description, icon, c
 -- These are just for documentation - the Go seed function handles insertion
 -- ===========================
 
--- ===========================
--- CONTAINERS (5 containers)
--- ===========================
-INSERT INTO containers (created_at, updated_at, name, address, district, capacity, current_count, status) VALUES
-(NOW(), NOW(), 'Conteneur République', 'Place de la République', '75011', 30, 12, 'operational'),
-(NOW(), NOW(), 'Conteneur Bastille', 'Place de la Bastille', '75012', 25, 20, 'operational'),
-(NOW(), NOW(), 'Conteneur Nation', 'Place de la Nation', '75011', 20, 5, 'operational'),
-(NOW(), NOW(), 'Conteneur Oberkampf', 'Rue Oberkampf', '75011', 15, 15, 'full'),
-(NOW(), NOW(), 'Conteneur Marais', 'Rue de Bretagne', '75003', 25, 8, 'operational');
-
 -- Note: Users, listings, workshops, scores, notifications are seeded by Go at startup
 -- (see cmd/main.go seedData function)

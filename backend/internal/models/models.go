@@ -95,31 +95,6 @@ type WorkshopBooking struct {
 	Status     string   `gorm:"type:varchar(20);default:'confirmed'" json:"status"`
 }
 
-type Container struct {
-	Base
-	Name         string `gorm:"not null" json:"name"`
-	Address      string `json:"address"`
-	District     string `json:"district"`
-	Capacity     int    `gorm:"default:25" json:"capacity"`
-	CurrentCount int    `gorm:"default:0" json:"current_count"`
-	Status       string `gorm:"type:varchar(20);default:'operational'" json:"status"`
-}
-
-type ContainerRequest struct {
-	Base
-	UserID            uint      `json:"user_id"`
-	User              User      `json:"user,omitempty"`
-	ContainerID       uint      `json:"container_id"`
-	Container         Container `json:"container,omitempty"`
-	ObjectTitle       string    `json:"object_title"`
-	ObjectDescription string    `gorm:"type:text" json:"object_description"`
-	DesiredDate       time.Time `json:"desired_date"`
-	Status            string    `gorm:"type:varchar(20);default:'pending'" json:"status"`
-	AccessCode        string    `json:"access_code,omitempty"`
-	Barcode           string    `json:"barcode,omitempty"`
-	RejectReason      string    `json:"reject_reason,omitempty"`
-}
-
 type UpcyclingScore struct {
 	Base
 	UserID           uint    `gorm:"uniqueIndex" json:"user_id"`

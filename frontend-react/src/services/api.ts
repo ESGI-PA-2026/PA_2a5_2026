@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type {
-  User, Listing, Workshop, Container, ContainerRequest,
+  User, Listing, Workshop,
   Category, Notification, Invoice, AdminStats, AuthResponse
 } from '../types';
 
@@ -79,20 +79,6 @@ export const categoryService = {
   create: (data: Partial<Category>) => api.post<Category>('/categories', data),
   update: (id: number, data: Partial<Category>) => api.put<Category>(`/categories/${id}`, data),
   delete: (id: number) => api.delete(`/categories/${id}`),
-};
-
-// Containers
-export const containerService = {
-  getAll: () => api.get<Container[]>('/containers'),
-  getOne: (id: number) => api.get<Container>(`/containers/${id}`),
-  create: (data: Partial<Container>) => api.post<Container>('/containers', data),
-  update: (id: number, data: Partial<Container>) => api.put<Container>(`/containers/${id}`, data),
-  getRequests: (params?: { status?: string }) =>
-    api.get<ContainerRequest[]>('/containers/requests', { params }),
-  createRequest: (data: { container_id: number; object_title: string; object_description: string; desired_date: string }) =>
-    api.post<ContainerRequest>('/containers/requests', data),
-  validateRequest: (id: number) => api.put(`/containers/requests/${id}/validate`),
-  rejectRequest: (id: number, reason: string) => api.put(`/containers/requests/${id}/reject`, { reason }),
 };
 
 // Score
