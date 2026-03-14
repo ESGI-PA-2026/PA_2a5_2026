@@ -8,6 +8,7 @@ import HomePage from './pages/public/HomePage';
 import LoginPage from './pages/public/LoginPage';
 import RegisterPage from './pages/public/RegisterPage';
 import ListingsPage from './pages/public/ListingsPage';
+import ListingDetailPage from './pages/public/ListingDetailPage';
 
 // Admin pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -54,6 +55,7 @@ function App() {
       {/* Public routes */}
       <Route path="/" element={<HomePage />} />
       <Route path="/annonces" element={<ListingsPage />} />
+      <Route path="/annonces/:id" element={<ListingDetailPage />} />
       <Route path="/login" element={user ? <Navigate to={getDashboardPath()} /> : <LoginPage />} />
       <Route path="/register" element={user ? <Navigate to={getDashboardPath()} /> : <RegisterPage />} />
 

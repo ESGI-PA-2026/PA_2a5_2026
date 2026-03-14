@@ -5,8 +5,10 @@ import ListingCard from '../../components/common/ListingCard';
 import { useQuery } from '@tanstack/react-query';
 import { listingService, categoryService } from '../../services/api';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
+import { useNavigate } from 'react-router-dom';
 
 export default function ListingsPage() {
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -146,7 +148,7 @@ export default function ListingsPage() {
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
                   {listings.map((listing) => (
-                    <ListingCard key={listing.id} listing={listing} />
+                    <ListingCard key={listing.id} listing={listing} onClick={() => navigate(`/annonces/${listing.id}`)} />
                   ))}
                 </div>
 
