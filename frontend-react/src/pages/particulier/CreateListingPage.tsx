@@ -193,12 +193,13 @@ export default function CreateListingPage() {
                   )}
                 </div>
                 <div>
-                  <label className="label">Localisation</label>
+                  <label className="label">Adresse exacte</label>
                   <input
-                    {...register('location', { required: 'Localisation requise' })}
+                    {...register('location', { required: 'Adresse requise' })}
                     className="input"
-                    placeholder="Ex: Paris 11e"
+                    placeholder="Ex: 12 rue de la Paix, Paris 75001"
                   />
+                  <p className="text-xs text-gray-400 mt-1">L'adresse sera affichée sur une carte pour les acheteurs.</p>
                   {errors.location && <p className="text-red-500 text-xs mt-1">{errors.location.message}</p>}
                 </div>
 

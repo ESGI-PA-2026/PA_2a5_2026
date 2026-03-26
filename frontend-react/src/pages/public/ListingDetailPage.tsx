@@ -3,13 +3,59 @@ import { MapPin, Clock, ArrowLeft, Tag, BadgeCheck, User as UserIcon, Briefcase,
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import PublicLayout from '../../components/layout/PublicLayout';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { listingService, siretService, reviewService, messageService, reportService } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+});
+
+function LocationMap({ address }: { address: string }) {
+  const [coords, setCoords] = useState<[number, number] | null>(null);
+
+  useEffect(() => {
+    if (!address) return;
+    fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`)
+      .then(r => r.json())
+      .then(data => {
+        if (data?.[0]) setCoords([parseFloat(data[0].lat), parseFloat(data[0].lon)]);
+      })
+      .catch(() => {});
+  }, [address]);
+
+  if (!coords) return null;
+
+  return (
+    <div className="mt-4">
+      <h2 className="font-semibold text-gray-900 mb-2 flex items-center gap-1.5">
+        <MapPin className="w-4 h-4 text-primary-500" />
+        Localisation
+      </h2>
+      <div className="h-52 rounded-xl overflow-hidden border border-gray-100">
+        <MapContainer center={coords} zoom={15} style={{ height: '100%', width: '100%' }} zoomControl={false}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={coords}>
+            <Popup>{address}</Popup>
+          </Marker>
+        </MapContainer>
+      </div>
+    </div>
+  );
+}
 
 const conditionLabels: Record<string, string> = {
   neuf: 'Neuf',
@@ -206,6 +252,8 @@ export default function ListingDetailPage() {
                     <p className="text-gray-600 whitespace-pre-line leading-relaxed">{listing.description}</p>
                   </div>
                 )}
+
+                {listing.location && <LocationMap address={listing.location} />}
               </div>
             </div>
 
